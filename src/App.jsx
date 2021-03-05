@@ -24,7 +24,7 @@ function App() {
     <div>
       {user ? <Logout /> : <Login />}
       <form
-        className={user ? "" : "none"}
+        className={user ? "form" : "none"}
         onSubmit={(e) => {
           e.preventDefault();
           update([...todo, { ...data, id: counter }]);
