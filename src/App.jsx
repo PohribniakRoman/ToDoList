@@ -9,7 +9,6 @@ function App() {
   const StoredData = JSON.parse(localStorage.getItem("Todos")) || [];
   const cuurentID =
     StoredData.length === 0 ? 0 : StoredData[StoredData.length - 1].id + 1;
-  console.log(cuurentID);
   const [todo, update] = useState(StoredData);
   const [counter, updateCounter] = useState(cuurentID);
   const initialFormData = {
@@ -21,7 +20,6 @@ function App() {
   function updateFormField(event) {
     updateData({ ...data, [event.target.name]: event.target.value });
   }
-  // console.log(todo);
   return (
     <div>
       {user ? <Logout /> : <Login />}
@@ -70,7 +68,6 @@ function App() {
                   return tI.id !== todoItem.id;
                 });
                 update(updatedTodos);
-                console.log(updatedTodos);
                 localStorage.setItem("Todos", JSON.stringify(updatedTodos));
               }}
             />
