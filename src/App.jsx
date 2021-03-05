@@ -74,9 +74,13 @@ function App() {
           );
         })}
       </ul>
-      <div className="stat1">completed:{todo.filter((todoItem) => todoItem.isDone).length}</div><br />
+      <div className="stat1">
+        completed:<b>{todo.filter((todoItem) => todoItem.isDone).length}</b>
+      </div>
+      <br />
       <div className="stat2">
-        not completed:{todo.filter((todoItem) => !todoItem.isDone).length}
+        not completed:
+        <b>{todo.filter((todoItem) => !todoItem.isDone).length}</b>
       </div>
     </div>
   );
