@@ -74,12 +74,11 @@ function App() {
           );
         })}
       </ul>
-      <div>completed:{todo.filter((todoItem) => todoItem.isDone).length}</div>
-      <div>
+      <div className="stat1">completed:{todo.filter((todoItem) => todoItem.isDone).length}</div><br />
+      <div className="stat2">
         not completed:{todo.filter((todoItem) => !todoItem.isDone).length}
       </div>
     </div>
   );
 }
-//user
 export default App;
