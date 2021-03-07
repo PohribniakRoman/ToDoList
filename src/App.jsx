@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
+import Stat from "./components/Stat";
 import TodoItem from "./components/TodoItem";
 import "./styles/style.css";
 
@@ -9,6 +10,7 @@ function App() {
   const StoredData = JSON.parse(localStorage.getItem("Todos")) || [];
   const cuurentID =
     StoredData.length === 0 ? 0 : StoredData[StoredData.length - 1].id + 1;
+  const [isLogined, updateLogin] = useState(false);
   const [todo, update] = useState(StoredData);
   const [counter, updateCounter] = useState(cuurentID);
   const initialFormData = {
@@ -74,14 +76,7 @@ function App() {
           );
         })}
       </ul>
-      <div className="stat1">
-        completed:<b>{todo.filter((todoItem) => todoItem.isDone).length}</b>
-      </div>
-      <br />
-      <div className="stat2">
-        not completed:
-        <b>{todo.filter((todoItem) => !todoItem.isDone).length}</b>
-      </div>
+        <Stat todo={todo}/>
     </div>
   );
 }
