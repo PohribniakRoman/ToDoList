@@ -1,13 +1,13 @@
 export default function TodoItem({ data, changeStatus, deleteItem }) {
   return (
-    <li className="todo"> 
-      {data.title}, {data.date}
-      <input type="checkbox" value={data.isDone} onChange={changeStatus} />
-      <button
-        onClick={deleteItem}
-      >
-        x
-      </button>
-    </li>
+      <li className="todo">
+        <div>
+          {data.title}
+        </div>
+        <div>{`Creator:${data.name}`}</div>
+        <div>{`Date:${data.date}`}</div>
+        <button onClick={changeStatus}>Complete task</button>
+        <button onClick={deleteItem}>x</button>
+      </li>
   );
 }

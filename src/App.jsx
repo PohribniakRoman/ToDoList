@@ -17,6 +17,7 @@ function App() {
     title: "",
     date: "",
     isDone: false,
+    name: user,
   };
   const [data, updateData] = useState(initialFormData);
   function updateFormField(event) {
@@ -27,17 +28,26 @@ function App() {
   }
   return (
     <div>
-      {user ? <Logout changeStatus={changeStatus}/> : <Login changeStatus={changeStatus}/>}
+      {user ? (
+        <Logout changeStatus={changeStatus} />
+      ) : (
+        <Login changeStatus={changeStatus} />
+      )}
       <form
         className={user ? "form" : "none"}
         onSubmit={(e) => {
           e.preventDefault();
-          update([...todo, { ...data, id: counter }]);
+          const time = [ new Date().getSeconds() < 10 ? `0${new Date().getSeconds()}` : new Date().getSeconds(),new Date().getMinutes() < 10 ? `0${new Date().getMinutes()}` : new Date().getMinutes(),new Date().getHours() < 10 ? `0${new Date().getHours}` : new Date().getHours()].join(':')
+          const cuurentData = [
+            ...todo,
+            { ...data, id: counter, date: time,name:user},
+          ]
+          update(cuurentData);
           updateCounter(counter + 1);
           updateData(initialFormData);
           localStorage.setItem(
             "Todos",
-            JSON.stringify([...todo, { ...data, id: counter }])
+            JSON.stringify(cuurentData)
           );
         }}
       >
@@ -46,13 +56,6 @@ function App() {
           type="text"
           name="title"
           value={data.title}
-          onChange={updateFormField}
-        />
-        <input
-          required
-          type="date"
-          name="date"
-          value={data.date}
           onChange={updateFormField}
         />
         <button type="submit">Add task</button>
@@ -67,6 +70,7 @@ function App() {
                 const dataSlice = [...todo];
                 dataSlice[index].isDone = !todoItem.isDone;
                 update(dataSlice);
+                localStorage.setItem("Todos", JSON.stringify(dataSlice));
               }}
               deleteItem={() => {
                 const updatedTodos = todo.filter((tI) => {
@@ -79,7 +83,7 @@ function App() {
           );
         })}
       </ul>
-        <Stat todo={todo}/>
+      <Stat todo={todo} />
     </div>
   );
 }

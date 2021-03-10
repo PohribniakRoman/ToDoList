@@ -1,5 +1,4 @@
 export default function Stat({todo}) {
-    console.log(todo);
   return (
     <section>
       <div className="completed">
