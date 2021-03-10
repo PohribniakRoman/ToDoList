@@ -22,9 +22,12 @@ function App() {
   function updateFormField(event) {
     updateData({ ...data, [event.target.name]: event.target.value });
   }
+  function changeStatus() {
+    updateLogin(!isLogined);
+  }
   return (
     <div>
-      {user ? <Logout /> : <Login />}
+      {user ? <Logout changeStatus={changeStatus}/> : <Login changeStatus={changeStatus}/>}
       <form
         className={user ? "form" : "none"}
         onSubmit={(e) => {

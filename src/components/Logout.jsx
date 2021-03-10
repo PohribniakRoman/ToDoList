@@ -1,8 +1,9 @@
-export default function Logout() {
+export default function Logout({changeStatus}) {
   return (
     <div>
       <button
         onClick={() => {
+          changeStatus();
           localStorage.removeItem("user");
         }}
       >

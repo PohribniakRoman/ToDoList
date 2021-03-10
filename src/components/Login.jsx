@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
-export default function Login() {
+export default function Login( {changeStatus} ) {
     const [field, updateField] = useState("");
     return(
         <form
-        onSubmit={(event) => {
+        onSubmit={(event)=>{
           event.preventDefault();
+          changeStatus();
           localStorage.setItem("user", event.target.name.value.trim());
           updateField("");
         }}
@@ -20,7 +21,7 @@ export default function Login() {
             updateField(event.target.value);
           }}
         />
-        <input type="submit" value="log in" />
+        <input type="submit" value="log in"/>
       </form>
 
     )
