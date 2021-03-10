@@ -2,11 +2,11 @@ export default function Stat({todo}) {
     console.log(todo);
   return (
     <section>
-      <div className="stat1">
+      <div className="completed">
         completed:<b>{todo.filter((todoItem) => todoItem.isDone).length}</b>
       </div>
       <br />
-      <div className="stat2">
+      <div className="uncompleted">
         not completed:
         <b>{todo.filter((todoItem) => !todoItem.isDone).length}</b>
       </div>
